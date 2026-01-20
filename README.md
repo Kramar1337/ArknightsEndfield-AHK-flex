@@ -8,9 +8,9 @@ AHK скрипт для Arknights Endfield
 [__✨SteamTrade✨__](https://steamcommunity.com/tradeoffer/new/?partner=176456946&token=QbYR9jmE)
 
 __🚀Функционал:🚀__
-- Скип диалогов
-- Фастлут
 - Корявый автобой
+- Фастлут
+- Скип диалогов
 
 :musical_keyboard:__Горячие клавиши:__:musical_keyboard:
 ```
