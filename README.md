@@ -22,7 +22,7 @@ Home - Перезапуск
 End - Завершить работу
 ```
 <details>
-:memo:Как запустить?:memo:
+<summary>:memo:Как запустить?::memo:</summary>
 
 1. Скачать и установить [Autohotkey.com](https://www.autohotkey.com/download/ahk-install.exe)(прямая ссылка)
 
