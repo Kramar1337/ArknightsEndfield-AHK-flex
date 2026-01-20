@@ -21,6 +21,7 @@ Z - Скип диалогов
 Home - Перезапуск
 End - Завершить работу
 ```
+<details>
 :memo:Как запустить?:memo:
 
 1. Скачать и установить [Autohotkey.com](https://www.autohotkey.com/download/ahk-install.exe)(прямая ссылка)
@@ -29,6 +30,7 @@ End - Завершить работу
 ![hippo](https://media.giphy.com/media/LerrohpjasApOHH9G1/giphy.gif)
 
 2. Скачать репозиторий (Code > [Download Zip👌](https://github.com/Kramar1337/ArknightsEndfield-AHK-flex/archive/main.zip))
+</details>
 
 ## Disclaimer 
 This project is intended solely for educational purposes. 
