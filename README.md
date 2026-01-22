@@ -1,4 +1,4 @@
-# ArknightsEndfield AHK flex v0.001
+# ArknightsEndfield AHK flex v0.1
 
 AHK скрипт для Arknights Endfield
 
