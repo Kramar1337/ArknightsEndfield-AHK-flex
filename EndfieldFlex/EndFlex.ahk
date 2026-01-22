@@ -1,7 +1,14 @@
 ﻿/*
-
+8-50
+9-22
 RETURNOFALL
 ALLFIELD
+ENDFIELD4PC
+ENDFIELD
+
+
+6 ивент
+20 стандарт
 
 
 https://endfield.gryphline.com/ru-ru
@@ -121,7 +128,7 @@ Menu, Tray, add
 Menu, Tray, add, Exit, MetkaMenu1
 Menu, Tray, Icon, Exit, shell32.dll,28, 16
 
-xSkip1:=round(A_ScreenWidth * (2490 / 2560)), ySkip1:=round(A_ScreenHeight * (90 / 1440))
+xSkip1:=round(A_ScreenWidth * (2480 / 2560)), ySkip1:=round(A_ScreenHeight * (90 / 1440))
 xSkip2:=round(A_ScreenWidth * (1530 / 2560)), ySkip2:=round(A_ScreenHeight * (960 / 1440))
 return
 
@@ -146,35 +153,47 @@ if FuncCursorVisible()
 	Return
 ToggleR1 := !ToggleR1
 if (ToggleR1)
-    SetTimer, SpamKeys, 100
+{
+SetTimer, SpamKeys, 100
+SendInput, {vk1 down}
+}
 else
-    SetTimer, SpamKeys, Off
+{
+SetTimer, SpamKeys, Off
+SendInput, {vk1 up}
+}
 ToolTip,,,0,2
 Return
 SpamKeys:
 	Tooltip, AutoCumbat`nPres %key_AutoCombat%,round(A_ScreenWidth * .5 - 50),0,2
 	FuncRandomSleep()
-    SendInput, {vk1}
+	Sleep 150
 	FuncRandomSleep()
-	FuncRandomSpell()
-	FuncRandomSleep()
-	SendInput, {vk45}
-	FuncRandomSleep()
-if FuncCursorVisible()
+	Sleep 150
+if ((!WinActive(WindowFocus)) or FuncCursorVisible())
 {
 	ToggleR1 := !ToggleR1
 	SetTimer, SpamKeys, Off
 	ToolTip,,,0,2
+	SendInput, {vk1 up}
 	Return
 }
-if ((!WinActive(WindowFocus)) || (GetKeyVK(A_PriorKey) != GetKeyVK(key_AutoCombat)))
+	FuncRandomSpell()
+	FuncRandomSleep()
+	Sleep 150
+	SendInput, {vk45}
+	FuncRandomSleep()
+	Sleep 150
+if ((!WinActive(WindowFocus)) or FuncCursorVisible())
 {
 	ToggleR1 := !ToggleR1
 	SetTimer, SpamKeys, Off
 	ToolTip,,,0,2
+	SendInput, {vk1 up}
 	Return
 }
 return
+
 FuncRandomSpell()
 {
 	Random, ScRandomVar1, 1, 4
