@@ -1,40 +1,62 @@
 ﻿/*
-8-50
-9-22
-RETURNOFALL
-ALLFIELD
-ENDFIELD4PC
-ENDFIELD
-
-
-6 ивент
-20 стандарт
-
-
+схемы
+https://endfieldtools.dev/
+статы пушек
+https://datafield.cc/weapons
+офф сайт
 https://endfield.gryphline.com/ru-ru
-https://endfield.teamstardust.org/
-https://www.prydwen.gg/arknights-endfield/characters
-Endfield
-ahk_class UnityWndClass
-ahk_exe Endfield.exe
-ahk_pid 6704
+отметки 1
+https://game.skport.com/endfield/sign-in?header=0
+отметки 2
+https://act.skport.com/endfield/preDownload?header=0&hg_media=skport&hg_link_campaign=article
+инвентарь
+https://www.skport.com/iframe?type=prize&id=act_endfield_skport_079611
+Пополнение от официалов
+https://topup.gryphline.com/endfield
+Впн Ру
+https://chromewebstore.google.com/detail/%D0%B1%D0%B5%D1%81%D0%BF%D0%BB%D0%B0%D1%82%D0%BD%D0%BE%D0%B5-vpn-%D1%80%D0%B0%D1%81%D1%88%D0%B8%D1%80%D0%B5%D0%BD%D0%B8%D0%B5/jbcepijpgdmjidneaiopaoadekelheee?utm_source=item-share-cb
+видос про схемы от танкиста
+https://www.youtube.com/watch?v=57HEGjYEx8A
+гугл док схем
+https://docs.google.com/spreadsheets/d/1g1bU6RzD9axhoOd0rB3z81wpgn0jzdNcgg4VSg___Oc/htmlview?usp=sharing&pru=AAABnBQlHI4*9jLGjW4xyuMK892hBOuNyQ#gid=1822299165
+Лучший гайд на леватейн
+https://www.youtube.com/watch?v=1wv7N8NmMiE&t=558s
+Леватейн - Акэкури3-4 - Вулфгард - Арделия2-3
 
+Лэва
+Lae
+Лева
+
+Gil
+Гил
+
+Yvo
+Ивон
 
 ====================ArknightsEndfield AHK flex by Kramar1337====================
 
 F1 - Автобой
 F - Фастлут
 Z - Скип диалогов
+V - Macro Key
+Numpad 0 - Off
+Numpad 1 - ЛКМ спам (сообщения NPC)
+Numpad 2 - Shift spam (Пограничник)
+Numpad 3 - Jump-LMB-Shift
 
 
-
-
+Изменения: 08.02.2026
+ - Автобой с ультами
+ - V - Macro Key
+ - Numpad 0 - Off
+ - Numpad 1 - ЛКМ спам (сообщения NPC)
+ - Numpad 2 - Shift spam (Пограничник)
+ - Numpad 3 - Jump-LMB-Shift
 
 Изменения: 20.01.2026
  - Корявый автобой
  - Фастлут
  - Скип диалогов
-
 
 */
 
@@ -68,6 +90,10 @@ IniRead, key_SkipNPC, data\Config.ini, Settings, key_SkipNPC
 IniRead, key_Fastlyt, data\Config.ini, Settings, key_Fastlyt
 IniRead, key_EndExitapp, data\Config.ini, Settings, key_EndExitapp
 IniRead, key_Reload, data\Config.ini, Settings, key_Reload
+IniRead, key_LabelNumpad0, data\Config.ini, Settings, key_LabelNumpad0
+IniRead, key_LabelNumpad1, data\Config.ini, Settings, key_LabelNumpad1
+IniRead, key_LabelNumpad2, data\Config.ini, Settings, key_LabelNumpad2
+IniRead, key_LabelNumpad3, data\Config.ini, Settings, key_LabelNumpad3
 
 IniRead, Checkbox_AutoCombat, data\Config.ini, Settings, Checkbox_AutoCombat
 IniRead, Checkbox_Macro, data\Config.ini, Settings, Checkbox_Macro
@@ -95,10 +121,10 @@ Hotkey, IfWinActive
 if Checkbox_Macro
 {
 	Hotkey, *~$%key_Macro%, Metkakey_macro, on
-	; Hotkey, *~$%key_LabelNumpad0%, LabelNumpad0, on
-	; Hotkey, *~$%key_LabelNumpad1%, LabelNumpad1, on
-	; Hotkey, *~$%key_LabelNumpad2%, LabelNumpad2, on
-	; Hotkey, *~$%key_LabelNumpad3%, LabelNumpad3, on
+	Hotkey, *~$%key_LabelNumpad0%, LabelNumpad0, on
+	Hotkey, *~$%key_LabelNumpad1%, LabelNumpad1, on
+	Hotkey, *~$%key_LabelNumpad2%, LabelNumpad2, on
+	Hotkey, *~$%key_LabelNumpad3%, LabelNumpad3, on
 	; Hotkey, *~$%key_LabelNumpad4%, LabelNumpad4, on
 	; Hotkey, *~$%key_LabelNumpad5%, LabelNumpad5, on
 	; Hotkey, *~$%key_LabelNumpad6%, LabelNumpad6, on
@@ -130,19 +156,139 @@ Menu, Tray, Icon, Exit, shell32.dll,28, 16
 
 xSkip1:=round(A_ScreenWidth * (2480 / 2560)), ySkip1:=round(A_ScreenHeight * (90 / 1440))
 xSkip2:=round(A_ScreenWidth * (1530 / 2560)), ySkip2:=round(A_ScreenHeight * (960 / 1440))
+SleepVarRange = 100
 return
 
-
-
-; F1::
+; F2::
 ; sleep 500
-; ControlSend,ahk_parent, {sc1}, %WindowFocus%
+; ControlSend,ahk_parent, {vk1 down}, %WindowFocus%
 ; ControlClick, x1880 y1384, %WindowFocus%
 ; ControlClick,, %WindowFocus%, , Left, 1, x1880 y1384
 ; ControlClick, x1880 y1384, %WindowFocus%,,,, NA
 ; return
 
+;============================Макросы
+Metkakey_macro:
+Sleep 1
+IfWinNotActive, %WindowFocus%
+	Return
+if jopa1
+	Goto Label_Goto_LMBSpam
+if jopa2
+	Goto Label_Goto_ShiftSpam
+if jopa3
+	Goto Label_Goto_JumpLMBShift
+Return
 
+;==========Обычный спам клик мыши
+Label_Goto_LMBSpam:
+Loop
+{
+    GetKeyState, State1, %key_Macro%, P
+	If State1 = U
+        break 
+    Sleep 50
+	FuncRandomSleep()
+    SendInput, {vk1}
+}
+Return
+;==========ShiftSpam
+Label_Goto_ShiftSpam:
+if FuncCursorVisible()
+	Return
+Loop
+{
+    GetKeyState, State1, %key_Macro%, P
+	If State1 = U
+        break 
+    Sleep 50
+	FuncRandomSleep()
+	SendInput {vkA0 down} 		; шифт
+	Sleep 15
+	SendInput {vkA0 up} 		; шифт
+}
+Return
+;==========JumpLMBShift
+Label_Goto_JumpLMBShift:
+if FuncCursorVisible()
+	Return
+; StartTime := A_TickCount
+SendInput {vk1 down} 	; лкм зажать
+Sleep 15
+Loop
+{
+    GetKeyState, State1, %key_Macro%, P
+	If State1 = U
+        break
+	
+	SendInput {vkA0 down} 		; шифт
+	Sleep 15
+	SendInput {vkA0 up} 		; шифт
+    Sleep 15
+    SendInput {vk20} 		; пробел
+	Sleep 15
+	
+}
+SendInput {vk1 up}
+; EndTime := A_TickCount
+; Elapsed := EndTime - StartTime
+; ToolTip, Время работы: %Elapsed% мс, round(A_ScreenWidth * .5),0
+Return
+/*
+; ============================Калибровочка
+*~$PgUp::
+IfWinNotActive, %WindowFocus%
+	Return
+SleepVarRange+=5
+Tooltip % "Delay - " SleepVarRange,round(A_ScreenWidth * .5),0
+Return
+*~$PgDn::
+IfWinNotActive, %WindowFocus%
+	Return
+SleepVarRange-=5
+Tooltip % "Delay - " SleepVarRange,round(A_ScreenWidth * .5),0
+Return
+*/
+
+;===============================Off
+LabelNumpad0:
+IfWinNotActive, %WindowFocus%
+	Return
+FuncMacroRestore()
+ToolTip,Off, 0, 0
+sleep 500
+ToolTip
+Return
+;===============================LMB Spam
+LabelNumpad1:
+IfWinNotActive, %WindowFocus%
+	Return
+FuncMacroRestore()
+jopa1:=true
+ToolTip,LMB Spam, 0, 0
+sleep 500
+ToolTip
+Return
+;===============================Shift Spam
+LabelNumpad2:
+IfWinNotActive, %WindowFocus%
+	Return
+FuncMacroRestore()
+jopa2:=true
+ToolTip,Shift Spam, 0, 0
+sleep 500
+ToolTip
+Return
+;===============================Jump-LMB-Shift
+LabelNumpad3:
+IfWinNotActive, %WindowFocus%
+	Return
+FuncMacroRestore()
+jopa3:=true
+ToolTip,Jump-LMB-Shift, 0, 0
+sleep 500
+ToolTip
+Return
 
 ;============================Автобой
 Label_AutoCombat:
@@ -192,6 +338,17 @@ if ((!WinActive(WindowFocus)) or FuncCursorVisible())
 	SendInput, {vk1 up}
 	Return
 }
+	FuncRandomUlt()
+	FuncRandomSleep()
+	Sleep 150
+if ((!WinActive(WindowFocus)) or FuncCursorVisible())
+{
+	ToggleR1 := !ToggleR1
+	SetTimer, SpamKeys, Off
+	ToolTip,,,0,2
+	SendInput, {vk1 up}
+	Return
+}
 return
 
 FuncRandomSpell()
@@ -206,7 +363,38 @@ FuncRandomSpell()
 	if ScRandomVar1 = 4
 		SendInput, {vk34}
 }
-
+FuncRandomUlt()
+{
+	Random, ScRandomVar1, 1, 4
+	if ScRandomVar1 = 1
+	{
+		SendInput, {vk31 down}
+		sleep 340
+		SendInput, {vk31 up}
+		
+	}
+	if ScRandomVar1 = 2
+	{
+		SendInput, {vk32 down}
+		sleep 340
+		SendInput, {vk32 up}
+		
+	}
+	if ScRandomVar1 = 3
+	{
+		SendInput, {vk33 down}
+		sleep 340
+		SendInput, {vk33 up}
+		
+	}
+	if ScRandomVar1 = 4
+	{
+		SendInput, {vk34 down}
+		sleep 340
+		SendInput, {vk34 up}
+		
+	}
+}
 
 
 
@@ -243,11 +431,13 @@ Else
 		Click %xSkip1% %ySkip1%
 		FuncRandomSleep()
 		Click %xSkip2% %ySkip2%
+		FuncRandomSleep()
 	}
 }
 Return
 ;============================SetTimer Скип диалогов
 TimerNpcSkip:
+Sleep 100
 FuncRandomSleep()
 if ((!WinActive(WindowFocus)) || (GetKeyVK(A_PriorKey) != GetKeyVK(key_SkipNPC)))
 {
@@ -288,31 +478,6 @@ Loop
 	FuncRandomSleep()
 }
 return
-
-
-;============================Макросы
-Metkakey_macro:
-Sleep 1
-IfWinNotActive, %WindowFocus%
-	Return
-if !FuncCursorVisible()
-	Return
-; if jopa1
-	; Goto Label_Goto_Auto_Attack
-; if jopa2
-	; Goto Label_Goto_Chixia_Rage
-; if jopa3
-	; Goto Label_Goto_Bhop
-; if jopa4
-	; Goto Label_Goto_Sanhua
-; if jopa5
-	; Goto Label_Goto_Chixia_RagePP
-; if jopa6
-	; Goto Label_Goto_High_jump
-; if jopa7
-	; Goto Label_Goto_Auto_pistols
-Return
-
 
 
 ;============================Меню, Reload
@@ -383,6 +548,16 @@ FuncRandomSleep()
 {
 	Random, ScRandomSleep, 15, 40
 	Sleep %ScRandomSleep%
+}
+;==========================================Функция сброса
+FuncMacroRestore()
+{
+Global
+	Loop 26
+	{
+		IndexVarL := A_Index - 1
+		jopa%IndexVarL% := false
+	}
 }
 
 ; ============================Калибровочка
