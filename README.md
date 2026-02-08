@@ -45,7 +45,3 @@ This project is intended solely for educational purposes.
 
 ## License
 
-This project is licensed under the MIT License. For more information, see the [LICENSE] file.
-4. Запустить скрипт.
-
-```
