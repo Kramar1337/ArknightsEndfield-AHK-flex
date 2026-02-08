@@ -1,22 +1,28 @@
-# ArknightsEndfield AHK flex v0.1
+# ArknightsEndfield AHK flex v0.2
 
 AHK скрипт для Arknights Endfield
 
 🙏 Использование скриптов может привести к блокировке учетной записи, использовать на свой страх и риск.
 
 [__✨Boosty✨__](https://boosty.to/kramar1337)
-[__✨SteamTrade✨__](https://steamcommunity.com/tradeoffer/new/?partner=176456946&token=QbYR9jmE)
 
 __🚀Функционал:🚀__
-- Корявый автобой
+- Автобой
 - Фастлут
 - Скип диалогов
+- ЛКМ спам
+- Shift spam
 
 :musical_keyboard:__Горячие клавиши:__:musical_keyboard:
 ```
-F1 - AutoCombat
+F1 - Автобой
 F - Фастлут
 Z - Скип диалогов
+V - Macro Key
+Numpad 0 - Off
+Numpad 1 - ЛКМ спам (сообщения NPC)
+Numpad 2 - Shift spam (Пограничник)
+Numpad 3 - Jump-LMB-Shift
 
 Home - Перезапуск
 End - Завершить работу
